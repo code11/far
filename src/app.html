@@ -1,3 +1,59 @@
 <template>
-  <h1>${message}</h1>
+  <require from="./styles.css"></require>
+  <h1>FAR</h1>
+  <h2>Ansökan om medlemskap i FAR samt ansökan om att genomgå FARs lönekonsultexamen</h2>
+
+  <fieldset>
+    <ul if.bind="validationController.errors">
+      <li repeat.for="error of validationController.errors">
+        ${error.message}
+      </li>
+    </ul>
+
+    <legend>Allmänna uppgifter</legend>
+    <div class="form-group">
+      <label for="fullname">Förnamn och efternamn</label>
+      <input value.bind="fullname & validate" type="text" id="fullname" placeholder="Anton Oter">
+    </div>
+
+    <div class="form-group">
+      <label for="ssn">Personnummer</label>
+      <input value.bind="ssn & validate" type="text" id="ssn" placeholder="ÅÅMMDDNNNC">
+    </div>
+
+    <div class="form-group">
+      <label for="company">Företag</label>
+      <input value.bind="company" type="text" id="company" placeholder="Navn på foretag">
+    </div>
+
+    <div class="form-group">
+      <label for="orgnr">Organisationsnummer</label>
+      <input value.bind="orgnr" type="text" id="orgnr" placeholder="">
+    </div>
+
+    <div class="form-group">
+      <label for="address">Besöksadress</label>
+      <input value.bind="address" type="text" id="address" placeholder="">
+    </div>
+
+    <div class="form-group">
+      <label for="postadress">Postadress</label>
+      <input value.bind="postadress" type="text" id="postadress" placeholder="">
+    </div>
+
+    <div class="form-group">
+      <label for="mobile">Mobiltlf</label>
+      <input value.bind="mobile" type="text" id="mobile" placeholder="">
+    </div>
+
+    <div class="form-group">
+      <label for="email">E-post (löpande information från FAR kommer att skickas till denna E-post)</label>
+      <input value.bind="email" type="email" id="email" placeholder="">
+    </div>
+
+    <div class="form-group">
+      <label for="website">Webbplats</label>
+      <input value.bind="website" type="text" id="website" placeholder="www.dittdomene.se">
+    </div>
+  </fieldset>
 </template>
