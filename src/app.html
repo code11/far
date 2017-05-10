@@ -1,5 +1,7 @@
 <template>
   <require from="./styles.css"></require>
+  <require from="./far.css"></require>
+  <require from="./resources/elements/true-false-radio"></require>
   <h1>FAR</h1>
   <h2>Ansökan om medlemskap i FAR samt ansökan om att genomgå FARs lönekonsultexamen</h2>
 
@@ -13,7 +15,7 @@
     <legend>Allmänna uppgifter</legend>
     <div class="form-group">
       <label for="fullname">Förnamn och efternamn</label>
-      <input value.bind="fullname & validate" type="text" id="fullname" placeholder="Anton Oter">
+      <input value.bind="fullname & validate" type="text" id="fullname" placeholder="Anton Oter" autofocus>
     </div>
 
     <div class="form-group">
@@ -56,4 +58,240 @@
       <input value.bind="website" type="text" id="website" placeholder="www.dittdomene.se">
     </div>
   </fieldset>
+
+  <fieldset>
+    <legend>Företaget innehar ansvarsförsäkring</legend>
+    <div class="form-group">
+      <true-false-radio name="insurance" value.bind="insurance"></true-false-radio>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Alternativ</legend>
+    <div class="form-group">
+      <input type="radio" model.bind="1" id="alternative1" name="alternative" checked.bind="alternative">
+      <label for="alternative1">
+        Alternativ 1 – Huvudregeln – Examen från universitet eller högskola (180 p)
+      </label>
+      <p>
+        Har akademisk examen med företagsekonomisk inriktning om minst 180 hp (tre års heltidsstudier). I examen ska ingå minst 60 p företagsekonomi, 15 p skatt, 15 p juridik eller utländsk examen av motsvarande omfattning. (Bifoga examensbevis).
+      </p>
+    </div>
+
+    <div class="form-group">
+      <input type="radio" model.bind="2" id="alternative2" name="alternative" checked.bind="alternative">
+      <label for="alternative2">
+        Alternativ 2 – Enstaka kurser från universitet eller högskola (120 p)
+      </label>
+      <p>
+   	    Har genomgått enstaka kurser på universitet/högskola om minst 120 hp (två års heltidsstudier),
+        varav minst 60 p företagsekonomi, 15 p skatt, 15 p juridik samt 30 p inom relevanta ämnen.
+        (Bifoga kursintyg).
+      </p>
+    </div>
+
+    <div class="form-group">
+      <input type="radio" model.bind="3" id="alternative3" name="alternative" checked.bind="alternative">
+      <label for="alternative3">
+        Alternativ 3 – Annan eftergymnasial utbildning
+      </label>
+      <p>
+ 	      Har av FAR godkänd eftergymnasial utbildning med inriktning mot företagsekonomi om minst två år,
+        motsvarande 120 hp (två års heltidsstudier/400 Yh-poäng), varav - 60 hp företagsekonomi
+        (200 Yh-poäng), - 15 hp skatt (50 Yh-poäng),  - 15 hp juridik (50 Yh-poäng) och - 30 hp
+        inom relevanta ämnen (100 Yh-poäng). (Bifoga examensbevis).
+      </p>
+    </div>
+
+    <div class="form-group">
+      <input type="radio" model.bind="4" id="alternative4" name="alternative" checked.bind="alternative">
+      <label for="alternative4">
+        Alternativ 4 – Ansökan enligt övergångsregel – gällande t.o.m. 31 december 2017 – med anledning av lång erfarenhet
+      </label>
+      <p></p>
+    </div>
+
+    <div class="form-group">
+      <input type="radio" model.bind="5" id="alternative5" name="alternative" checked.bind="alternative">
+      <label for="alternative5">
+        Alternativ 5 – Ansökan enligt övergångsregel – gällande t.o.m. 31 december 2017 – med anledning av medlemskap som auktoriserad redovisningskonsult i Srf konsulterna
+      </label>
+      <p></p>
+    </div>
+  </fieldset>
+
+  <fieldset show.bind="alternative === 1">
+    <legend>Alternativ 1</legend>
+    <label for="alternative1_experience">Praktik - antall år</label>
+    <span class="help-text">Har minst 3 års praktik från redovisningsbyrå eller revisionsbyrå</span>
+    <input id="alternative1_experience" type="number" value.bind="alternative1.experience">
+
+    <label for="alternative1_description">Beskrivning av praktiken (alt. bifoga CV)</label>
+    <textarea id="alternative1_description" cols="80" rows="10" value.bind="alternative1.description"></textarea>
+  </fieldset>
+
+  <fieldset show.bind="alternative === 2">
+    <legend>Alternativ 2</legend>
+    <label for="alternative2_experience">Praktik - antall år</label>
+    <span class="help-text">Har minst 5 års praktik från redovisningsbyrå eller revisionsbyrå</span>
+    <input id="alternative2_experience" type="number" value.bind="alternative2.experience">
+
+    <label for="alternative2_description">Beskrivning av praktiken (alt. bifoga CV)</label>
+    <textarea id="alternative2_description" cols="80" rows="10" value.bind="alternative2.description"></textarea>
+  </fieldset>
+
+  <fieldset show.bind="alternative === 3">
+    <legend>Alternativ 3</legend>
+    <label for="alternative3_experience">Praktik - antall år</label>
+    <span class="help-text">Har minst 5 års praktik från redovisningsbyrå eller revisionsbyrå</span>
+    <input id="alternative3_experience" type="number" value.bind="alternative3.experience">
+
+    <label for="alternative3_description">Beskrivning av praktiken (alt. bifoga CV)</label>
+    <textarea id="alternative3_description" cols="80" rows="10" value.bind="alternative3.description"></textarea>
+  </fieldset>
+
+
+  <fieldset show.bind="alternative === 4">
+    <legend>Alternativ 4</legend>
+    <label for="alternative4_experience">Praktik - antall år</label>
+    <span class="help-text"> 	Har minst 12 års dokumenterad erfarenhet som redovisningskonsult med uppdragsverksamhet</span>
+    <input id="alternative4_experience" type="number" value.bind="alternative4.experience">
+
+    <label for="alternative4_description">Beskriv din erfarenhet som redovisningskonsult samt nuvarande arbetsuppgifter</label>
+    <textarea id="alternative4_description" cols="80" rows="10" value.bind="alternative4.description"></textarea>
+  </fieldset>
+
+  <fieldset show.bind="alternative === 5">
+    <legend>Alternativ 5</legend>
+    <p>
+      Ansöker enligt övergångsregel om befrielse från kravet på utbildning,
+      praktik (alternativ 1, 2 och 3 ovan) och/eller kravet på att genomgå
+      redovisningskonsultexamen baserat på medlemskap i Srf konsulterna som auktoriserad
+      redovisningskonsult. (Bifoga intyg, t.ex. medlemsbevis från Srf konsulterna)
+    </p>
+    <div class="form-group">
+      <true-false-radio name="alternative5_free" value.bind="alternative5.free"></true-false-radio>
+    </div>
+
+    <p>
+      Har redovisningsuppdrag enligt Reko i ett revisionsföretag eller ett redovisningsföretag.
+    </p>
+    <div class="form-group">
+      <true-false-radio name="alternative5_reko_or_company" value.bind="alternative5.reko_or_company"></true-false-radio>
+    </div>
+
+    <p>
+      Har genomgått Srf konsulternas kvalitetskontroll för redovisningsverksamhet
+      eller vara beredd att genomgå FARs kvalitetskontroll för redovisningsverksamhet
+      inom ett år. ( I förekommande fall, bifoga kopia av intyg från Srf konsulternas
+      kvalitetskontroll).
+    </p>
+    <div class="form-group">
+      <true-false-radio name="alternative5_qos" value.bind="alternative5.qos"></true-false-radio>
+    </div>
+
+    <div class="form-group">
+      <label for="alternative5_description">Beskriv nuvarande arbetsuppgifter</label>
+      <textarea id="alternative5_description"  cols="80" rows="10" value.bind="alternative5.description"></textarea>
+    </div>
+  </fieldset>
+
+  <fieldset show.bind="alternative && alternative !== 5">
+    <legend>Redovisningskonsultexamen</legend>
+    <p>
+      I samband med ansökan om medlemskap ansöker jag om att få genomgå redovisningskonsultexamen
+      samt en auktorisationsdag för redovisningskonsulter. Datum för examen och auktorisationsdag
+      kommer att meddelas senare.
+    </p>
+    <p>
+      Sökanden rekommenderas att även genomgå förberedelsekurs inför redovisningskonsultexamen.
+    </p>
+    <p>
+      Medlemskap i FAR som redovisningskonsult förutsätter att godkänt resultat erhållits i
+      FARs redovisningskonsultexamen samt att övriga invalskrav är uppfyllda.
+    </p>
+    <div class="form-group">
+      <true-false-radio name="exam" value.bind="exam"></true-false-radio>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Referenser till två medlemmar i FAR</legend>
+    <template repeat.for="idx of [0, 1]">
+      Medlem ${$index + 1}
+      <div class="form-group">
+        <label for="reference${idx}_name">Namn</label>
+        <input type="text" id="reference${idx}_name" value.bind="references[idx].name">
+      </div>
+      <div class="form-group">
+        <label for="reference${idx}_company">Byrå</label>
+        <input type="text" id="reference${idx}_company" value.bind="references[idx].company">
+      </div>
+      <div class="form-group">
+        <label for="reference${idx}_email">E-post</label>
+        <input type="text" id="reference${idx}_email" value.bind="references[idx].email">
+      </div>
+      <div class="form-group">
+        <label for="reference${idx}_mobile">Mobil</label>
+        <input type="text" id="reference${idx}_mobile" value.bind="references[idx].mobile">
+      </div>
+    </template>
+  </fieldset>
+
+  <fieldset>
+    <legend>Behandling av personuppgifter</legend>
+    <p>
+      I enlighet med personuppgiftslagen (1998:204) informeras du om att personuppgifterna
+      i din ansökan kommer att behandlas i FARs ärenderegister.
+      FAR org.nr 556081-7974, Box 6417, 113 82 Stockholm, ansvarar för att personuppgifterna
+      behandlas på ett korrekt sätt. Ändamålet med behandlingen är att pröva din ansökan om
+      inträde i organisationen och för att kunna utföra kvalitetskontroller enligt FARs stadgar.
+      Du har rätt att en gång per år få ta del av de personuppgifter som finns registrerade om dig.
+      Du har även rätt att begära att felaktiga uppgifter korrigeras.
+      Ansökan om information och rättelse ska vara skriftlig och ställas till FAR.
+      Ytterligare information finns på FAR webbplats, https://www.farakademi.se/om-oss/allmanna-villkor/personuppgiftslagen/
+    </p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Samtycke enligt personuppgiftslagen (PUL)</legend>
+    <p>
+      Om jag blir medlem samtycker jag till att mitt namn och min e-postadress
+      publiceras i FARs medlemsregister på FARs webbplats.
+    </p>
+    <div class="form-group">
+      <true-false-radio name="accept" value.bind="accept"></true-false-radio>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Övriga uppgifter som sökanden vill åberopa</legend>
+    <div class="form-group">
+      <label for="other_info"></label>
+      <textarea id="other_info" value.bind="other_info" rows="10" cols="80"></textarea>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Innsending</legend>
+    Jag försäkrar att jag inte
+    <ul>
+      <li>är i konkurs</li>
+      <li>är underkastad näringsförbud</li>
+      <li>har förvaltare enligt 11 kap. 7 § föräldrabalken</li>
+      <li>är förbjuden att lämna juridiskt eller ekonomiskt biträde enligt 3 § lagen (1985:354) om förbud mot juridiskt eller ekonomiskt biträde i vissa fall eller</li>
+      <li>är föremål för någon motsvarande rådighetsinskränkning i en annan stat</li>
+    </ul>
+    <p>
+      Härmed intygar jag att ovanstående uppgifter är korrekta samt att jag kommer att följa bestämmelserna i
+FARs stadgar och regler för god yrkessed.
+    </p>
+    <div class="form-group">
+      <true-false-radio name="legal" value.bind="legal"></true-false-radio>
+    </div>
+
+    <input type="button" value="Send inn sökanden">
+  </fieldset>
+
+
 </template>
