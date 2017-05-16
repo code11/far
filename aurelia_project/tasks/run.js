@@ -1,13 +1,25 @@
 import gulp from 'gulp';
 import browserSync from 'browser-sync';
 import historyApiFallback from 'connect-history-api-fallback/lib';
+// import proxyMiddleware from 'http-proxy-middleware';
 import project from '../aurelia.json';
 import build from './build';
 import {CLIOptions} from 'aurelia-cli';
 
-function log(message) {
-  console.log(message); //eslint-disable-line no-console
-}
+// let proxyOptions = {
+//   target: 'https://verified-dev.c11.io',
+//   changeOrigin: true,
+//   onProxyRes: function(proxyRes, req, res) {
+//     proxyRes.headers['Access-Control-Allow-Origin'] = '*';
+//   }
+// };
+//
+// let proxy = proxyMiddleware('/api/', proxyOptions);
+//
+//
+// function log(message) {
+//   console.log(message); //eslint-disable-line no-console
+// }
 
 function onChange(path) {
   log(`File Changed: ${path}`);

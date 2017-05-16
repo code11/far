@@ -9,6 +9,13 @@ export class App {
     this.validationController.validateTrigger = validateTrigger.change;
     this.validationController.addRenderer(new CustomValidationFormRenderer);
   }
+
+  activate() {
+    VeLib.core.init('https://verified-dev.c11.io')
+      .then(() => {
+        console.log('velib init');
+      });
+  }
 }
 
 
