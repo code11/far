@@ -11,7 +11,7 @@ export class App {
   }
 
   activate() {
-    VeLib.core.init('https://verified-dev.c11.io')
+    VeLib.core.init()
       .then(() => {
         console.log('velib init');
       });
